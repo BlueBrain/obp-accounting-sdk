@@ -9,6 +9,11 @@ jobs:
   build-n-publish:
     name: Build and publish on PyPI
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/obp-accounting-sdk
+    permissions:
+      id-token: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
