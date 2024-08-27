@@ -19,6 +19,8 @@ jobs:
           codecov: codecov
         - python-version: '3.12'
           tox-env: lint
+        - python-version: '3.12'
+          tox-env: check-packaging
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
