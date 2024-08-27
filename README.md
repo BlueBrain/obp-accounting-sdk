@@ -1,8 +1,14 @@
 # obp-accounting-sdk
 
+[![Build status][build_status_badge]][build_status_target]
+[![License][license_badge]][license_target]
+[![Code coverage][coverage_badge]][coverage_target]
+[![CodeQL][codeql_badge]][codeql_target]
+[![PyPI][pypi_badge]][pypi_target]
+
 ## Description
 
-Client SDK for the OBP Accounting Service.
+Python SDK for the OBP Accounting Service.
 
 
 ## Usage
@@ -61,3 +67,30 @@ curl -vs "http://127.0.0.1:$UVICORN_PORT/query" \
 {"input_text": "my query"}
 EOF
 ```
+
+Contribution Guidelines
+-----------------------
+
+See [CONTRIBUTING](CONTRIBUTING.md).
+
+
+Acknowledgment
+--------------
+
+The development of this software was supported by funding to the Blue Brain Project, a research center of the École polytechnique fédérale de Lausanne (EPFL), from the Swiss government’s ETH Board of the Swiss Federal Institutes of Technology.
+
+For license and authors, see [LICENSE](LICENSE.txt) and [AUTHORS](AUTHORS.txt) respectively.
+
+Copyright © 2024 Blue Brain Project/EPFL
+
+
+[build_status_badge]: https://github.com/BlueBrain/obp-accounting-sdk/actions/workflows/run-tox.yml/badge.svg
+[build_status_target]: https://github.com/BlueBrain/obp-accounting-sdk/actions
+[license_badge]: https://img.shields.io/pypi/l/obp-accounting-sdk
+[license_target]: https://github.com/BlueBrain/obp-accounting-sdk/blob/main/LICENSE.txt
+[coverage_badge]: https://codecov.io/github/BlueBrain/obp-accounting-sdk/coverage.svg?branch=main
+[coverage_target]: https://codecov.io/github/BlueBrain/obp-accounting-sdk?branch=main
+[codeql_badge]: https://github.com/BlueBrain/obp-accounting-sdk/actions/workflows/github-code-scanning/codeql/badge.svg
+[codeql_target]: https://github.com/BlueBrain/obp-accounting-sdk/actions/workflows/github-code-scanning/codeql
+[pypi_badge]: https://github.com/BlueBrain/obp-accounting-sdk/actions/workflows/publish-sdist.yml/badge.svg
+[pypi_target]: https://pypi.org/project/obp-accounting-sdk/

@@ -21,10 +21,7 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         python -m pip install build
     - name: Build distribution packages
-      run:
+      run: |
         python -m build
     - name: Publish distribution packages to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
