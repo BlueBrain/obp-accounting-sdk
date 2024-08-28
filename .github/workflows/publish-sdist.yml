@@ -1,32 +1,49 @@
 name: PyPI
 
 on:
+  workflow_dispatch:
+  pull_request:
   push:
-    tags:
-    - 'v[0-9]+.[0-9]+.[0-9]+'
+    branches:
+     - main
+  release:
+    types:
+      - published
 
 jobs:
-  build-n-publish:
-    name: Build and publish on PyPI
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build a binary wheel and a source tarball
+      run: pipx run build
+    - name: Check metadata
+      run: pipx run twine check dist/*
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  publish-to-pypi:
+    name: Publish Python distribution to PyPI
+    if: github.event_name == 'release' && github.event.action == 'published'
+    needs:
+    - build
     runs-on: ubuntu-latest
     environment:
       name: pypi
       url: https://pypi.org/p/obp-accounting-sdk
     permissions:
-      id-token: write
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
       with:
-        python-version: 3.12
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip setuptools wheel
-        python -m pip install build
-    - name: Build distribution packages
-      run: |
-        python -m build
-    - name: Publish distribution packages to PyPI
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
